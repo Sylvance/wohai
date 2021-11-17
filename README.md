@@ -1,24 +1,73 @@
-# README
+# Wohai
+The good Rails template.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Commands
 
-Things you may want to cover:
+### Installation
 
-* Ruby version
+- Run `make install`
 
-* System dependencies
+### Runn the app
 
-* Configuration
+- Run `make serve`
 
-* Database creation
+### Migrate the database
 
-* Database initialization
+- Run `make db:migrate`
 
-* How to run the test suite
+### Reset the database
 
-* Services (job queues, cache servers, search engines, etc.)
+- Run `make db:reset`
 
-* Deployment instructions
+### Run tests
 
-* ...
+- Run `make test`
+
+### Deploy the app
+
+- Run `make deploy`
+
+## Generators
+
+### Generate commands
+
+- Run `script/generate app/commands/[resource]/[action].rb`
+  e.g.
+  ```sh
+   script/generate app/commands/todo/create.rb
+  ```
+
+### Generate events
+
+- Run `script/generate app/events/[resource]/[action].rb`
+  e.g.
+  ```sh
+   script/generate app/events/todo/todo_created.rb
+  ```
+
+### Generate reactors
+
+- Run `script/generate app/reactors/[resource]/[noun].rb`
+  e.g.
+  ```sh
+   script/generate app/reactors/todo/new_todo.rb
+  ```
+
+### Generate creators
+
+- Run `script/generate app/creators/pattern/[resource]/[action].rb`
+  e.g.
+  ```sh
+   script/generate app/creators/builders/todo/new_todo.rb
+  ```
+
+### Generate strategies
+
+- Run `script/generate app/strategies/pattern/[resource]/[action].rb`
+  e.g.
+  ```sh
+   script/generate app/strategies/builder/todo/new_todo.rb
+  ```
+
+## Contribution
+Sylvance Mbaka.
