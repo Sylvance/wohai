@@ -29,44 +29,18 @@ The good Rails template.
 
 ## Generators
 
-### Generate commands
+### Generate templates
 
-- Run `script/generate app/commands/[resource]/[action].rb`
+- Run `ruby lib/templates/generate.rb Type name`
+
   e.g.
+
   ```sh
-   script/generate app/commands/todo/create.rb
-  ```
-
-### Generate events
-
-- Run `script/generate app/events/[resource]/[action].rb`
-  e.g.
-  ```sh
-   script/generate app/events/todo/todo_created.rb
-  ```
-
-### Generate reactors
-
-- Run `script/generate app/reactors/[resource]/[noun].rb`
-  e.g.
-  ```sh
-   script/generate app/reactors/todo/new_todo.rb
-  ```
-
-### Generate creators
-
-- Run `script/generate app/creators/pattern/[resource]/[action].rb`
-  e.g.
-  ```sh
-   script/generate app/creators/builders/todo/new_todo.rb
-  ```
-
-### Generate strategies
-
-- Run `script/generate app/strategies/pattern/[resource]/[action].rb`
-  e.g.
-  ```sh
-   script/generate app/strategies/builder/todo/new_todo.rb
+   ruby lib/templates/generate.rb Invoker flag_and_archive_todo_flow
+   ruby lib/templates/generate.rb Validator check_todo_exists
+   ruby lib/templates/generate.rb Command flag_todo
+   ruby lib/templates/generate.rb Callback archive_todo
+   ruby lib/templates/generate.rb Client import_remote_todos
   ```
 
 ## Contribution

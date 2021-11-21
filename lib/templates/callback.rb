@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
-module Clients
-  class {{Client}} < Client
-    NET_HTTP_ERRORS = [
-      Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-      Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError
-    ].freeze
+module Callbacks
+  class {{Callback}}Exception < StandardError
+    def initialize(msg='This is a custom exception', exception_type='custom')
+      @exception_type = exception_type
+      super(msg)
+    end
+  end
+
+  class {{Callback}} < Callback
+    ERROR_LIST = [Callbacks::{{Callback}}Exception].freeze
 
     attr_reader :param1, :param2
 
@@ -23,7 +27,7 @@ module Clients
       return error_for(nil, 'param2 argument is missing.') if param2.blank?
       return error_for(nil, 'validation checks did not pass.') unless validation_check
 
-      http_call
+      run_callback
     end
 
     private
@@ -36,28 +40,11 @@ module Clients
       true
     end
 
-    def http_call
-      response = http.request(request)
-      result = JSON.parse(response.read_body).with_indifferent_access
-      OpenStruct.new(result: result, error: nil)
-    rescue *NET_HTTP_ERRORS => e
+    def run_callback
+      OpenStruct.new(result: nil, error: nil)
+    rescue *ERROR_LIST => e
       Rails.logger.error("#{e.message} #{e.backtrace}")
       OpenStruct.new(result: nil, error: e)
-    end
-
-    def http
-      http = Net::HTTP.new(url.host, url.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      http
-    end
-
-    def url
-      @url ||= URI("https://api.randomurl.com/resources/#{param2}/#{param1}")
-    end
-
-    def request
-      Net::HTTP::Get.new(url)
     end
   end
 end

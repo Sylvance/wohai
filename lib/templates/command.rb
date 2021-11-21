@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 module Commands
-  class CommandException < StandardError
+  class {{Command}}Exception < StandardError
     def initialize(msg='This is a custom exception', exception_type='custom')
       @exception_type = exception_type
       super(msg)
     end
   end
 
-  class Command
-    ERROR_LIST = [Commands::CommandException].freeze
+  class {{Command}} < Command
+    ERROR_LIST = [Commands::{{Command}}Exception].freeze
 
     attr_reader :param1, :param2
 
