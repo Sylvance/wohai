@@ -13,11 +13,11 @@ The good Rails template.
 
 ### Migrate the database
 
-- Run `make db:migrate`
+- Run `make db-migrate`
 
 ### Reset the database
 
-- Run `make db:reset`
+- Run `make db-reset`
 
 ### Run tests
 
