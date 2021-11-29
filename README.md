@@ -44,4 +44,4 @@ The good Rails template.
   ```
 
 ## Contribution
-Sylvance Mbaka.
+Sylvance Mbaka. Rise above.
